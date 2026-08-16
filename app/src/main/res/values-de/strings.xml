@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Drive Assistant</string>
+    <string name="listener_label">Drive Assistant – Navi-Leser</string>
+
+    <string name="title_setup">Einrichtung</string>
+    <string name="step1">1. Benachrichtigungszugriff erlauben</string>
+    <string name="step2">2. Drive Assistant verbinden</string>
+    <string name="step3">3. Google Maps Navigation starten</string>
+
+    <string name="btn_notif_access">Benachrichtigungszugriff öffnen</string>
+    <string name="notif_privacy_hint">Hinweis: Android zeigt gleich eine allgemeine Warnung zum Benachrichtigungszugriff. Diese App verarbeitet ausschließlich Google-Maps-Benachrichtigungen und den Musik-Status – alles andere wird sofort verworfen. Die App hat keine Internet-Berechtigung und kann daher nichts weitergeben.</string>
+    <string name="notif_granted">Zugriff erteilt, Dienst läuft</string>
+    <string name="notif_granted_not_bound">Zugriff erteilt, aber Dienst läuft NICHT – bitte Zugriff einmal aus- und wieder einschalten (siehe Hilfe)</string>
+    <string name="notif_missing">Benachrichtigungszugriff fehlt</string>
+
+    <string name="status_dot">●</string>
+    <string name="btn_help">ⓘ Hilfe</string>
+    <string name="help_title">Hilfe &amp; Einrichtung</string>
+    <string name="help_text"><![CDATA[
+<b>So nimmst du den Drive Assistant in Betrieb</b><br/>
+1. Benachrichtigungszugriff erlauben (Knopf unter Schritt 1).<br/>
+2. Drive Assistant einschalten, dann „Drive Assistant suchen &amp; verbinden" drücken.<br/>
+3. Navigation in Google Maps starten – der Drive Assistant zeigt automatisch Abbiegepfeil, Entfernung und Straße.<br/>
+<br/>
+<b>Einmalige Einstellungen (wichtig, sonst bleibt die Anzeige leer!)</b><br/>
+<br/>
+<b>• Autostart erlauben:</b> Einstellungen → Apps → Drive Assistant → „Autostart" einschalten (sofern dein Telefon diese Einstellung anbietet). Sonst beendet das System den Benachrichtigungs-Dienst im Hintergrund.<br/>
+<br/>
+<b>• Akku nicht einschränken:</b> Einstellungen → Apps → Drive Assistant → Akku → „Keine Einschränkungen" wählen. So läuft die App auch bei ausgeschaltetem Bildschirm weiter.<br/>
+<br/>
+<b>• Google-Maps-Benachrichtigungen erlauben:</b> Einstellungen → Apps → Google Maps → Benachrichtigungen → „Navigation" aktivieren. Die App liest die Abbiege-Infos aus genau dieser Benachrichtigung – ist sie aus, kommt nichts an.<br/>
+<br/>
+<b>Gut zu wissen</b><br/>
+<br/>
+• Die Warnung von Android beim Erteilen des Benachrichtigungszugriffs ist ein allgemeiner Systemhinweis. Die App verarbeitet ausschließlich Google-Maps-Benachrichtigungen und den Musik-Status; sie hat keine Internet-Berechtigung und kann daher nichts weitergeben.<br/>
+<br/>
+• Die Dauer-Benachrichtigung <i>„Drive Assistant aktiv"</i> ist Absicht: Sie hält die App am Leben, damit das System sie nicht beendet. Bitte nicht deaktivieren.<br/>
+<br/>
+• Steht bei Schritt 1 <i>„Dienst läuft NICHT"</i> (oder die Anzeige bleibt trotz allem leer): Benachrichtigungszugriff einmal AUS- und wieder EINschalten (Knopf unter Schritt 1). Das startet den Dienst neu. Auch nach jedem App-Update empfohlen.<br/>
+<br/>
+• Bricht die Verbindung ab (z.&#160;B. Gerät aus- und wieder eingeschaltet), einfach erneut „suchen &amp; verbinden" drücken. Ohne Verbindung zeigt der Drive Assistant den Wartebildschirm.<br/>
+<br/>
+• „Testpaket senden" prüft nur die Funkverbindung zum Drive Assistant – Google Maps ist dafür nicht nötig.
+]]></string>
+
+    <string name="btn_connect">Drive Assistant suchen &amp; verbinden</string>
+    <string name="btn_disconnect">Verbindung trennen</string>
+    <string name="btn_test">Testpaket senden</string>
+
+    <string name="ble_disconnected">Nicht verbunden</string>
+    <string name="ble_scanning">Suche Drive Assistant…</string>
+    <string name="ble_connecting">Verbinde…</string>
+    <string name="ble_connected">Verbunden ✓</string>
+
+    <string name="last_sent">Zuletzt gesendet: %1$s</string>
+    <string name="last_sent_none">Noch nichts gesendet</string>
+
+    <string name="keepalive_channel">Hintergrunddienst</string>
+    <string name="keepalive_title">Drive Assistant aktiv</string>
+    <string name="keepalive_text">Wartet auf Google-Maps-Navigation</string>
+
+    <string name="perm_denied">Bluetooth-Berechtigung verweigert</string>
+    <string name="bt_off">Bitte Bluetooth einschalten</string>
+    <string name="test_sent">Testpaket gesendet</string>
+</resources>

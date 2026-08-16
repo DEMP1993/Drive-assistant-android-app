@@ -1,65 +1,65 @@
 <resources>
     <string name="app_name">Drive Assistant</string>
-    <string name="listener_label">Drive Assistant – Navi-Leser</string>
+    <string name="listener_label">Drive Assistant – navigation reader</string>
 
-    <string name="title_setup">Einrichtung</string>
-    <string name="step1">1. Benachrichtigungszugriff erlauben</string>
-    <string name="step2">2. Drive Assistant verbinden</string>
-    <string name="step3">3. Google Maps Navigation starten</string>
+    <string name="title_setup">Setup</string>
+    <string name="step1">1. Allow notification access</string>
+    <string name="step2">2. Connect Drive Assistant</string>
+    <string name="step3">3. Start Google Maps navigation</string>
 
-    <string name="btn_notif_access">Benachrichtigungszugriff öffnen</string>
-    <string name="notif_privacy_hint">Hinweis: Android zeigt gleich eine allgemeine Warnung zum Benachrichtigungszugriff. Diese App verarbeitet ausschließlich Google-Maps-Benachrichtigungen und den Musik-Status – alles andere wird sofort verworfen. Die App hat keine Internet-Berechtigung und kann daher nichts weitergeben.</string>
-    <string name="notif_granted">Zugriff erteilt, Dienst läuft</string>
-    <string name="notif_granted_not_bound">Zugriff erteilt, aber Dienst läuft NICHT – bitte Zugriff einmal aus- und wieder einschalten (siehe Hilfe)</string>
-    <string name="notif_missing">Benachrichtigungszugriff fehlt</string>
+    <string name="btn_notif_access">Open notification access</string>
+    <string name="notif_privacy_hint">Note: Android will show a general warning about notification access. This app only processes Google Maps notifications and your music status – everything else is discarded immediately. The app has no internet permission and therefore cannot pass anything on.</string>
+    <string name="notif_granted">Access granted, service running</string>
+    <string name="notif_granted_not_bound">Access granted, but the service is NOT running – please switch access off and on again (see Help)</string>
+    <string name="notif_missing">Notification access missing</string>
 
     <string name="status_dot">●</string>
-    <string name="btn_help">ⓘ Hilfe</string>
-    <string name="help_title">Hilfe &amp; Einrichtung</string>
+    <string name="btn_help">ⓘ Help</string>
+    <string name="help_title">Help &amp; setup</string>
     <string name="help_text"><![CDATA[
-<b>So nimmst du den Drive Assistant in Betrieb</b><br/>
-1. Benachrichtigungszugriff erlauben (Knopf unter Schritt 1).<br/>
-2. Drive Assistant einschalten, dann „Drive Assistant suchen &amp; verbinden" drücken.<br/>
-3. Navigation in Google Maps starten – der Drive Assistant zeigt automatisch Abbiegepfeil, Entfernung und Straße.<br/>
+<b>Getting started with Drive Assistant</b><br/>
+1. Allow notification access (button under step 1).<br/>
+2. Switch on the Drive Assistant, then tap "Search &amp; connect Drive Assistant".<br/>
+3. Start navigation in Google Maps – the Drive Assistant automatically shows the turn arrow, distance and street.<br/>
 <br/>
-<b>Einmalige Einstellungen (wichtig, sonst bleibt die Anzeige leer!)</b><br/>
+<b>One-time settings (important – otherwise the display stays empty!)</b><br/>
 <br/>
-<b>• Autostart erlauben:</b> Einstellungen → Apps → Drive Assistant → „Autostart" einschalten (sofern dein Telefon diese Einstellung anbietet). Sonst beendet das System den Benachrichtigungs-Dienst im Hintergrund.<br/>
+<b>• Allow autostart:</b> Settings → Apps → Drive Assistant → enable "Autostart" (if your phone offers this setting). Otherwise the system stops the notification service in the background.<br/>
 <br/>
-<b>• Akku nicht einschränken:</b> Einstellungen → Apps → Drive Assistant → Akku → „Keine Einschränkungen" wählen. So läuft die App auch bei ausgeschaltetem Bildschirm weiter.<br/>
+<b>• Don\'t restrict battery:</b> Settings → Apps → Drive Assistant → Battery → choose "No restrictions". This keeps the app running while the screen is off.<br/>
 <br/>
-<b>• Google-Maps-Benachrichtigungen erlauben:</b> Einstellungen → Apps → Google Maps → Benachrichtigungen → „Navigation" aktivieren. Die App liest die Abbiege-Infos aus genau dieser Benachrichtigung – ist sie aus, kommt nichts an.<br/>
+<b>• Allow Google Maps notifications:</b> Settings → Apps → Google Maps → Notifications → enable "Navigation". The app reads the turn information from exactly this notification – if it is off, nothing arrives.<br/>
 <br/>
-<b>Gut zu wissen</b><br/>
+<b>Good to know</b><br/>
 <br/>
-• Die Warnung von Android beim Erteilen des Benachrichtigungszugriffs ist ein allgemeiner Systemhinweis. Die App verarbeitet ausschließlich Google-Maps-Benachrichtigungen und den Musik-Status; sie hat keine Internet-Berechtigung und kann daher nichts weitergeben.<br/>
+• The Android warning when granting notification access is a general system notice. The app only processes Google Maps notifications and your music status; it has no internet permission and therefore cannot pass anything on.<br/>
 <br/>
-• Die Dauer-Benachrichtigung <i>„Drive Assistant aktiv"</i> ist Absicht: Sie hält die App am Leben, damit das System sie nicht beendet. Bitte nicht deaktivieren.<br/>
+• The permanent notification <i>"Drive Assistant active"</i> is intentional: it keeps the app alive so the system does not stop it. Please do not disable it.<br/>
 <br/>
-• Steht bei Schritt 1 <i>„Dienst läuft NICHT"</i> (oder die Anzeige bleibt trotz allem leer): Benachrichtigungszugriff einmal AUS- und wieder EINschalten (Knopf unter Schritt 1). Das startet den Dienst neu. Auch nach jedem App-Update empfohlen.<br/>
+• If step 1 says <i>"service is NOT running"</i> (or the display stays empty despite everything): switch notification access OFF and ON again (button under step 1). This restarts the service. Also recommended after every app update.<br/>
 <br/>
-• Bricht die Verbindung ab (z.&#160;B. Gerät aus- und wieder eingeschaltet), einfach erneut „suchen &amp; verbinden" drücken. Ohne Verbindung zeigt der Drive Assistant den Wartebildschirm.<br/>
+• If the connection drops (e.&#160;g. the device was switched off and on again), simply tap "Search &amp; connect" again. Without a connection the Drive Assistant shows the wait screen.<br/>
 <br/>
-• „Testpaket senden" prüft nur die Funkverbindung zum Drive Assistant – Google Maps ist dafür nicht nötig.
+• "Send test packet" only checks the radio link to the Drive Assistant – Google Maps is not needed for it.
 ]]></string>
 
-    <string name="btn_connect">Drive Assistant suchen &amp; verbinden</string>
-    <string name="btn_disconnect">Verbindung trennen</string>
-    <string name="btn_test">Testpaket senden</string>
+    <string name="btn_connect">Search &amp; connect Drive Assistant</string>
+    <string name="btn_disconnect">Disconnect</string>
+    <string name="btn_test">Send test packet</string>
 
-    <string name="ble_disconnected">Nicht verbunden</string>
-    <string name="ble_scanning">Suche Drive Assistant…</string>
-    <string name="ble_connecting">Verbinde…</string>
-    <string name="ble_connected">Verbunden ✓</string>
+    <string name="ble_disconnected">Not connected</string>
+    <string name="ble_scanning">Searching for Drive Assistant…</string>
+    <string name="ble_connecting">Connecting…</string>
+    <string name="ble_connected">Connected ✓</string>
 
-    <string name="last_sent">Zuletzt gesendet: %1$s</string>
-    <string name="last_sent_none">Noch nichts gesendet</string>
+    <string name="last_sent">Last sent: %1$s</string>
+    <string name="last_sent_none">Nothing sent yet</string>
 
-    <string name="keepalive_channel">Hintergrunddienst</string>
-    <string name="keepalive_title">Drive Assistant aktiv</string>
-    <string name="keepalive_text">Wartet auf Google-Maps-Navigation</string>
+    <string name="keepalive_channel">Background service</string>
+    <string name="keepalive_title">Drive Assistant active</string>
+    <string name="keepalive_text">Waiting for Google Maps navigation</string>
 
-    <string name="perm_denied">Bluetooth-Berechtigung verweigert</string>
-    <string name="bt_off">Bitte Bluetooth einschalten</string>
-    <string name="test_sent">Testpaket gesendet</string>
+    <string name="perm_denied">Bluetooth permission denied</string>
+    <string name="bt_off">Please switch on Bluetooth</string>
+    <string name="test_sent">Test packet sent</string>
 </resources>
