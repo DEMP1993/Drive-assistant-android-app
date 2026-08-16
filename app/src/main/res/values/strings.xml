@@ -8,6 +8,7 @@
     <string name="step3">3. Google Maps Navigation starten</string>
 
     <string name="btn_notif_access">Benachrichtigungszugriff öffnen</string>
+    <string name="notif_privacy_hint">Hinweis: Android zeigt gleich eine allgemeine Warnung zum Benachrichtigungszugriff. Diese App verarbeitet ausschließlich Google-Maps-Benachrichtigungen und den Musik-Status – alles andere wird sofort verworfen. Die App hat keine Internet-Berechtigung und kann daher nichts weitergeben.</string>
     <string name="notif_granted">Zugriff erteilt, Dienst läuft</string>
     <string name="notif_granted_not_bound">Zugriff erteilt, aber Dienst läuft NICHT – bitte Zugriff einmal aus- und wieder einschalten (siehe Hilfe)</string>
     <string name="notif_missing">Benachrichtigungszugriff fehlt</string>
@@ -30,6 +31,8 @@
 <b>• Google-Maps-Benachrichtigungen erlauben:</b> Einstellungen → Apps → Google Maps → Benachrichtigungen → „Navigation" aktivieren. Die App liest die Abbiege-Infos aus genau dieser Benachrichtigung – ist sie aus, kommt nichts an.<br/>
 <br/>
 <b>Gut zu wissen</b><br/>
+<br/>
+• Die Warnung von Android beim Erteilen des Benachrichtigungszugriffs ist ein allgemeiner Systemhinweis. Die App verarbeitet ausschließlich Google-Maps-Benachrichtigungen und den Musik-Status; sie hat keine Internet-Berechtigung und kann daher nichts weitergeben.<br/>
 <br/>
 • Die Dauer-Benachrichtigung <i>„Drive Assistant aktiv"</i> ist Absicht: Sie hält die App am Leben, damit das System sie nicht beendet. Bitte nicht deaktivieren.<br/>
 <br/>

@@ -67,6 +67,15 @@
             android:paddingTop="4dp"
             android:paddingBottom="4dp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/notif_privacy_hint"
+            android:textSize="13sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:paddingStart="26dp"
+            android:paddingBottom="4dp" />
+
         <Button
             android:id="@+id/btnNotifAccess"
             android:layout_width="match_parent"

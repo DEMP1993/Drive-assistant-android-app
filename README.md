@@ -29,6 +29,21 @@ pocket with the screen off.
 > can depend on the Maps version and language — there is a debug mode to
 > adapt it (see below). **iOS is not supported.**
 
+## Privacy
+
+The app asks for **notification access**, and Android shows its general
+warning for that permission. What the app actually does with it:
+
+- It processes **only Google Maps notifications** — anything from any other
+  app is discarded immediately (see the package filter at the top of every
+  callback in `MapsNotificationListenerService.kt`), plus the media playback
+  state (title/artist) for the music screen.
+- It has **no internet permission** (check `AndroidManifest.xml`) — it is
+  technically unable to send anything anywhere. Your data goes exclusively
+  over Bluetooth to your own display.
+
+Don't take our word for it — the code is right here.
+
 ## Install
 
 A Play Store release is planned. Until then, build it yourself — it only
