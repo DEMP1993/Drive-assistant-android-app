@@ -5,6 +5,6 @@
     android:viewportHeight="108">
     <!-- Navigationspfeil nach oben-rechts -->
     <path
-        android:fillColor="#00C853"
+        android:fillColor="#30D158"
         android:pathData="M54,30 L74,74 L54,64 L34,74 Z" />
 </vector>

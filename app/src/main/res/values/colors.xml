@@ -1,6 +1,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="brand_green">#FF00C853</color>
-    <color name="ic_launcher_background">#FF101418</color>
+    <color name="brand_green">#FF30D158</color>
+    <color name="ic_launcher_background">#FF0A0A0C</color>
 </resources>
