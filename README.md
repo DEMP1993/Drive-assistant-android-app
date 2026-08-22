@@ -46,8 +46,18 @@ Don't take our word for it — the code is right here.
 
 ## Install
 
-A Play Store release is planned. Until then, build it yourself — it only
-takes a few minutes:
+### Option A — download the APK (recommended)
+
+1. On your phone, open the [latest release](https://github.com/DEMP1993/Drive-assistant-android-app/releases/latest)
+   and download `DriveAssistant-<version>.apk`.
+2. Tap the downloaded file. Android asks whether to allow installs from
+   this source (browser or Files app) — allow it, then tap **Install**.
+3. Open **Drive Assistant** and follow the set-up steps below.
+
+Updates: download the new APK and install it over the old one — your
+settings are kept. (All releases are signed with the same key.)
+
+### Option B — build it yourself
 
 1. Install [Android Studio](https://developer.android.com/studio).
 2. Open this project folder (*Open*, not *Import*) and let the Gradle sync
