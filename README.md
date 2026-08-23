@@ -7,8 +7,9 @@ your **Google Maps turn-by-turn navigation** (maneuver icon, distance,
 street name) and your **current music**, so your phone can stay in your
 pocket with the screen off.
 
-> Want the display itself? Everything about the device — what you need and
-> how to build it — is in the
+> Want the display itself? The step-by-step guide is on the project website
+> **[getdriveassistant.com](https://getdriveassistant.com)**; the firmware
+> and technical details are in the
 > **[firmware repository](https://github.com/DEMP1993/Drive-assistant-device-firmware)**.
 
 ## What the app does
