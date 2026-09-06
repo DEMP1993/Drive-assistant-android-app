@@ -19,7 +19,7 @@
     <string name="help_text"><![CDATA[
 <b>So nimmst du den Drive Assistant in Betrieb</b><br/>
 1. Benachrichtigungszugriff erlauben (Knopf unter Schritt 1).<br/>
-2. Drive Assistant einschalten, dann „Drive Assistant suchen &amp; verbinden" drücken.<br/>
+2. Drive Assistant einschalten – die App verbindet sich automatisch (auch wenn sie geschlossen ist). Klappt das nicht, „Drive Assistant suchen &amp; verbinden" drücken.<br/>
 3. Navigation in Google Maps starten – der Drive Assistant zeigt automatisch Abbiegepfeil, Entfernung und Straße.<br/>
 <br/>
 <b>Einmalige Einstellungen (wichtig, sonst bleibt die Anzeige leer!)</b><br/>
@@ -34,11 +34,17 @@
 <br/>
 • Die Warnung von Android beim Erteilen des Benachrichtigungszugriffs ist ein allgemeiner Systemhinweis. Die App verarbeitet ausschließlich Google-Maps-Benachrichtigungen und den Musik-Status; sie hat keine Internet-Berechtigung und kann daher nichts weitergeben.<br/>
 <br/>
-• Die Dauer-Benachrichtigung <i>„Drive Assistant aktiv"</i> ist Absicht: Sie hält die App am Leben, damit das System sie nicht beendet. Bitte nicht deaktivieren.<br/>
+• Die Benachrichtigung <i>„Drive Assistant aktiv"</i> erscheint nur, solange das Gerät verbunden ist. Sie hält die App während der Fahrt am Leben, damit das System sie nicht beendet. Bitte nicht deaktivieren.<br/>
 <br/>
 • Steht bei Schritt 1 <i>„Dienst läuft NICHT"</i> (oder die Anzeige bleibt trotz allem leer): Benachrichtigungszugriff einmal AUS- und wieder EINschalten (Knopf unter Schritt 1). Das startet den Dienst neu. Auch nach jedem App-Update empfohlen.<br/>
 <br/>
-• Bricht die Verbindung ab (z.&#160;B. Gerät aus- und wieder eingeschaltet), einfach erneut „suchen &amp; verbinden" drücken. Ohne Verbindung zeigt der Drive Assistant den Wartebildschirm.<br/>
+• Bricht die Verbindung ab (z.&#160;B. Gerät aus- und wieder eingeschaltet), verbindet die App von selbst neu. Falls nicht: „suchen &amp; verbinden" drücken – der manuelle Weg geht immer. Ohne Verbindung zeigt der Drive Assistant den Wartebildschirm.<br/>
+<br/>
+• „Verbindung trennen" pausiert das automatische Verbinden. Beim nächsten Öffnen der App oder „suchen &amp; verbinden" ist es wieder aktiv.<br/>
+<br/>
+• Nach Bluetooth aus/an oder einem Neustart des Handys die App einmal öffnen, damit das automatische Verbinden wieder aktiv ist.<br/>
+<br/>
+• Tipp: App in der Übersicht der letzten Apps sperren (Schloss-Symbol auf der App-Karte). Dann beendet „Alle schließen" sie während der Fahrt nicht mehr. Wird sie doch beendet, verbindet sie sich von selbst neu, sobald das Gerät wieder sichtbar ist.<br/>
 <br/>
 • „Testpaket senden" prüft nur die Funkverbindung zum Drive Assistant – Google Maps ist dafür nicht nötig.
 ]]></string>
@@ -47,7 +53,8 @@
     <string name="btn_disconnect">Verbindung trennen</string>
     <string name="btn_test">Testpaket senden</string>
 
-    <string name="ble_disconnected">Nicht verbunden</string>
+    <string name="ble_disconnected">Nicht verbunden – automatisches Verbinden pausiert</string>
+    <string name="ble_auto_armed">Nicht verbunden – verbindet automatisch, sobald der Drive Assistant eingeschaltet wird</string>
     <string name="ble_scanning">Suche Drive Assistant…</string>
     <string name="ble_connecting">Verbinde…</string>
     <string name="ble_connected">Verbunden ✓</string>
@@ -57,7 +64,9 @@
 
     <string name="keepalive_channel">Hintergrunddienst</string>
     <string name="keepalive_title">Drive Assistant aktiv</string>
-    <string name="keepalive_text">Wartet auf Google-Maps-Navigation</string>
+    <string name="notif_connecting">Verbinde…</string>
+    <string name="notif_connected">Verbunden – wartet auf Google-Maps-Navigation</string>
+    <string name="notif_waiting">Verbindung verloren – verbindet automatisch neu</string>
 
     <string name="perm_denied">Bluetooth-Berechtigung verweigert</string>
     <string name="bt_off">Bitte Bluetooth einschalten</string>

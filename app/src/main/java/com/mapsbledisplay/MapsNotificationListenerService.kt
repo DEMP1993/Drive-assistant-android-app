@@ -172,9 +172,14 @@ class MapsNotificationListenerService : NotificationListenerService() {
     override fun onListenerConnected() {
         Log.i(TAG, "NotificationListener verbunden")
         connected.value = true
-        // Falls der Prozess vom System (nur) fuer den Listener gestartet
-        // wurde: Foreground-Service nachziehen, sonst killt MIUI ihn wieder.
-        KeepAliveService.start(this)
+        // Bewusst KEIN Dauer-Dienst mehr: der Prozess wird nur gehalten,
+        // solange der Drive Assistant verbunden ist (DeviceService). Wird das
+        // Geraet eingeschaltet, weckt der Hintergrund-Scan die App und der
+        // Dienst fordert diesen Listener bei Bedarf neu an.
+        // Selbstheilung: hat das System den Prozess gekillt ("alle Apps
+        // schliessen"), bindet es den Listener kurz danach neu -> hier den
+        // Hintergrund-Scan sicherheitshalber wieder registrieren.
+        BackgroundScan.ensure(this)
         // Media-Sessions beobachten (braucht denselben Benachrichtigungs-
         // zugriff, der hier gerade nachweislich aktiv ist).
         MediaWatcher.start(this)

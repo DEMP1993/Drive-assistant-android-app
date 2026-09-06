@@ -140,6 +140,22 @@ object BleManager {
     }
 
     // ------------------------------------------------------------- Connect
+    /**
+     * Direkt zu einer bekannten Adresse verbinden (vom Hintergrund-Scan
+     * gemeldet) - ohne eigenen Scan, funktioniert daher auch im Hintergrund.
+     */
+    fun connectTo(address: String) {
+        if (_state.value != State.DISCONNECTED) return
+        val device = try {
+            adapter?.getRemoteDevice(address)
+        } catch (e: IllegalArgumentException) {
+            Log.w(TAG, "Ungueltige Adresse $address"); null
+        } ?: return
+        stopScan()
+        Log.i(TAG, "Direktverbindung zu $address")
+        connect(device)
+    }
+
     private fun connect(device: BluetoothDevice) {
         _state.value = State.CONNECTING
         gatt = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -210,6 +226,9 @@ object BleManager {
             if (mediaChar == null) Log.w(TAG, "Media-Charakteristik nicht vorhanden (alte Firmware?)")
             _state.value = State.CONNECTED
             Log.i(TAG, "Bereit zum Senden")
+            // Verbindung steht -> Vordergrund-Dienst haelt den Prozess, solange
+            // sie besteht (No-Op, wenn er uns gerade selbst gestartet hat).
+            DeviceService.start(appContext)
             // letzten Stand nachsenden (ESP32 koennte neu gestartet sein)
             if (pendingPayload == null) pendingPayload = lastPayload
             if (pendingIcon == null) pendingIcon = lastIcon

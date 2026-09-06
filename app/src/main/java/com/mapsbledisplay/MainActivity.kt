@@ -29,12 +29,20 @@ class MainActivity : AppCompatActivity() {
         ActivityResultContracts.RequestMultiplePermissions()
     ) { result ->
         // Nur die BLE-Berechtigungen sind Pflicht; POST_NOTIFICATIONS wird
-        // mit angefragt, darf aber fehlen (dann fehlt nur die KeepAlive-Notiz).
+        // mit angefragt, darf aber fehlen (dann fehlt nur die Dienst-Notiz).
         if (hasAllPermissions()) {
-            KeepAliveService.start(this)
-            BleManager.startScanAndConnect()
+            armAutoConnect()
+            // Android 10/11: Hintergrund-Standort fuer Scan-Ergebnisse im
+            // Hintergrund muss separat angefragt werden.
+            if (Permissions.needsBackgroundLocation(this)) {
+                bgLocationLauncher.launch(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+            }
         } else toast(getString(R.string.perm_denied))
     }
+
+    private val bgLocationLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { BackgroundScan.start(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,10 +50,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         BleManager.init(applicationContext)
-        // Ab Android 14 darf der KeepAlive-FGS (Typ connectedDevice) erst
-        // starten, wenn Bluetooth erteilt ist -> beim Erststart zuerst die
-        // Berechtigungen anfragen, Service startet dann im Launcher-Callback.
-        if (hasAllPermissions()) KeepAliveService.start(this)
+        // Beim Erststart zuerst die Berechtigungen anfragen; Auto-Verbinden
+        // wird dann im Launcher-Callback scharf geschaltet.
+        if (hasAllPermissions()) armAutoConnect()
         else permissionLauncher.launch(requestablePermissions())
 
         binding.btnNotifAccess.setOnClickListener {
@@ -56,7 +63,9 @@ class MainActivity : AppCompatActivity() {
             if (BleManager.state.value == BleManager.State.CONNECTED ||
                 BleManager.state.value == BleManager.State.CONNECTING
             ) {
-                BleManager.disconnect()
+                // Manuell trennen = Auto-Verbinden pausieren, bis die App
+                // wieder geoeffnet oder "verbinden" gedrueckt wird.
+                DeviceService.stop(this)
             } else {
                 ensurePermissionsThenScan()
             }
@@ -89,13 +98,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // ------------------------------------------------------------ Auto-Connect
+    /**
+     * Hintergrund-Scan registrieren (verbindet, sobald das Geraet eingeschaltet
+     * wird) und - wenn Bluetooth an ist - sofort einmal aktiv suchen, damit
+     * ein bereits laufendes Geraet ohne Wartezeit verbunden wird.
+     */
+    private fun armAutoConnect() {
+        BackgroundScan.start(this)
+        if (BleManager.isBluetoothOn() &&
+            BleManager.state.value == BleManager.State.DISCONNECTED
+        ) BleManager.startScanAndConnect()
+    }
+
     // ----------------------------------------------------------- Berechtigungen
-    private fun requiredBlePermissions(): Array<String> =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            arrayOf(Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.BLUETOOTH_CONNECT)
-        } else {
-            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
-        }
+    private fun requiredBlePermissions(): Array<String> = Permissions.requiredBle()
 
     /** BLE-Pflichtberechtigungen + optionale, die wir mit anfragen. */
     private fun requestablePermissions(): Array<String> =
@@ -113,7 +130,7 @@ class MainActivity : AppCompatActivity() {
             toast(getString(R.string.bt_off))
             return
         }
-        if (hasAllPermissions()) BleManager.startScanAndConnect()
+        if (hasAllPermissions()) armAutoConnect()
         else permissionLauncher.launch(requestablePermissions())
     }
 
@@ -163,15 +180,13 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
+                    BleManager.state.collect { st -> refreshBleStatus(st) }
+                }
+                launch {
+                    BackgroundScan.active.collect { refreshBleStatus(BleManager.state.value) }
+                }
+                launch {
                     BleManager.state.collect { st ->
-                        binding.tvBleStatus.text = getString(
-                            when (st) {
-                                BleManager.State.DISCONNECTED -> R.string.ble_disconnected
-                                BleManager.State.SCANNING -> R.string.ble_scanning
-                                BleManager.State.CONNECTING -> R.string.ble_connecting
-                                BleManager.State.CONNECTED -> R.string.ble_connected
-                            }
-                        )
                         binding.btnConnect.text = getString(
                             if (st == BleManager.State.CONNECTED || st == BleManager.State.CONNECTING)
                                 R.string.btn_disconnect else R.string.btn_connect
@@ -196,6 +211,19 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun refreshBleStatus(st: BleManager.State) {
+        binding.tvBleStatus.text = getString(
+            when (st) {
+                BleManager.State.DISCONNECTED ->
+                    if (BackgroundScan.active.value) R.string.ble_auto_armed
+                    else R.string.ble_disconnected
+                BleManager.State.SCANNING -> R.string.ble_scanning
+                BleManager.State.CONNECTING -> R.string.ble_connecting
+                BleManager.State.CONNECTED -> R.string.ble_connected
+            }
+        )
     }
 
     private fun toast(msg: String) =

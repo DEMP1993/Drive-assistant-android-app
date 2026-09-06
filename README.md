@@ -20,8 +20,9 @@ pocket with the screen off.
 - Mirrors the **current media playback** (title/artist) to the display's
   music screen and executes the display's buttons (play/pause, next,
   previous) on your phone's active player.
-- Keeps itself alive in the background with a small permanent notification,
-  so the display keeps working on long drives.
+- **Connects automatically** when the display is switched on — even while
+  the app is closed — and reconnects by itself after a drop. A small
+  notification is shown only while the display is connected.
 - Includes a **test packet** button so you can verify the connection before
   you drive.
 
@@ -73,8 +74,9 @@ The app guides you through three steps, each with a status indicator:
 
 1. **Allow notification access** — needed to read the Google Maps
    navigation notification (and to see your media playback).
-2. **Connect the display** — scans for "Drive Assistant" and connects.
-   Use **send test packet** to check everything works.
+2. **Switch on the display** — the app connects automatically (from
+   0.2). If it doesn't, **Search & connect** does it manually. Use
+   **send test packet** to check everything works.
 3. **Start navigating in Google Maps** — the display comes alive.
 
 Tips for reliable background operation:
@@ -82,8 +84,12 @@ Tips for reliable background operation:
 - Exclude the app from battery optimization / allow autostart. Some phone
   brands (e.g. Xiaomi/HyperOS) restrict background apps aggressively — the
   in-app **help dialog (ⓘ)** covers the needed switches.
-- The small permanent "Drive Assistant" notification is intentional — it
-  keeps the system from stopping the app mid-drive.
+- The small "Drive Assistant active" notification (shown while the display
+  is connected) is intentional — it keeps the system from stopping the app
+  mid-drive. Lock the app in the recent-apps overview so "close all"
+  doesn't end it; if that happens anyway, the app reconnects on its own.
+- After switching Bluetooth off and on, open the app once so the automatic
+  connection is armed again.
 - Google Maps notifications must be enabled on your phone.
 
 ## Adapting the parser (debug mode)

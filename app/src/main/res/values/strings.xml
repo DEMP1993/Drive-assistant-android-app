@@ -19,7 +19,7 @@
     <string name="help_text"><![CDATA[
 <b>Getting started with Drive Assistant</b><br/>
 1. Allow notification access (button under step 1).<br/>
-2. Switch on the Drive Assistant, then tap "Search &amp; connect Drive Assistant".<br/>
+2. Switch on the Drive Assistant – the app connects automatically (also while it is closed). If that does not happen, tap "Search &amp; connect Drive Assistant".<br/>
 3. Start navigation in Google Maps – the Drive Assistant automatically shows the turn arrow, distance and street.<br/>
 <br/>
 <b>One-time settings (important – otherwise the display stays empty!)</b><br/>
@@ -34,11 +34,17 @@
 <br/>
 • The Android warning when granting notification access is a general system notice. The app only processes Google Maps notifications and your music status; it has no internet permission and therefore cannot pass anything on.<br/>
 <br/>
-• The permanent notification <i>"Drive Assistant active"</i> is intentional: it keeps the app alive so the system does not stop it. Please do not disable it.<br/>
+• The notification <i>"Drive Assistant active"</i> only appears while the device is connected. It keeps the app alive during the ride so the system does not stop it. Please do not disable it.<br/>
 <br/>
 • If step 1 says <i>"service is NOT running"</i> (or the display stays empty despite everything): switch notification access OFF and ON again (button under step 1). This restarts the service. Also recommended after every app update.<br/>
 <br/>
-• If the connection drops (e.&#160;g. the device was switched off and on again), simply tap "Search &amp; connect" again. Without a connection the Drive Assistant shows the wait screen.<br/>
+• If the connection drops (e.&#160;g. the device was switched off and on again), the app reconnects by itself. If it does not, tap "Search &amp; connect" – the manual way always works. Without a connection the Drive Assistant shows the wait screen.<br/>
+<br/>
+• "Disconnect" pauses the automatic connection. It is re-enabled the next time you open the app or tap "Search &amp; connect".<br/>
+<br/>
+• After switching Bluetooth off and on or restarting the phone, open the app once so the automatic connection is active again.<br/>
+<br/>
+• Tip: lock the app in the recent-apps overview (lock icon on the app card). Then "close all" no longer stops it during a ride. If it does get stopped, the app reconnects by itself as soon as the device is visible again.<br/>
 <br/>
 • "Send test packet" only checks the radio link to the Drive Assistant – Google Maps is not needed for it.
 ]]></string>
@@ -47,7 +53,8 @@
     <string name="btn_disconnect">Disconnect</string>
     <string name="btn_test">Send test packet</string>
 
-    <string name="ble_disconnected">Not connected</string>
+    <string name="ble_disconnected">Not connected – automatic connection paused</string>
+    <string name="ble_auto_armed">Not connected – connects automatically as soon as the Drive Assistant is switched on</string>
     <string name="ble_scanning">Searching for Drive Assistant…</string>
     <string name="ble_connecting">Connecting…</string>
     <string name="ble_connected">Connected ✓</string>
@@ -57,7 +64,9 @@
 
     <string name="keepalive_channel">Background service</string>
     <string name="keepalive_title">Drive Assistant active</string>
-    <string name="keepalive_text">Waiting for Google Maps navigation</string>
+    <string name="notif_connecting">Connecting…</string>
+    <string name="notif_connected">Connected – waiting for Google Maps navigation</string>
+    <string name="notif_waiting">Connection lost – reconnects automatically</string>
 
     <string name="perm_denied">Bluetooth permission denied</string>
     <string name="bt_off">Please switch on Bluetooth</string>

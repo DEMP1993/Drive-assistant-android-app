@@ -17,11 +17,14 @@
     <!-- Standort wird bis API 30 fuer den BLE-Scan benoetigt -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"
         android:maxSdkVersion="30" />
+    <!-- Android 10/11: Scan-Ergebnisse im Hintergrund (Auto-Verbinden) -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"
+        android:maxSdkVersion="30" />
 
     <uses-feature android:name="android.hardware.bluetooth_le"
         android:required="true" />
 
-    <!-- Foreground-Service haelt den Prozess am Leben (MIUI killt ihn sonst) -->
+    <!-- Foreground-Service haelt den Prozess, solange das Geraet verbunden ist -->
     <!-- Android 13+: sonst ist die KeepAlive-Benachrichtigung unsichtbar -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -56,11 +59,17 @@
             </intent-filter>
         </service>
 
-        <!-- Haelt den Prozess am Leben, damit MIUI den Listener nicht verliert -->
+        <!-- Laeuft nur waehrend der Verbindung; haelt den Prozess, damit das
+             System den NotificationListener nicht verliert -->
         <service
-            android:name=".KeepAliveService"
+            android:name=".DeviceService"
             android:exported="false"
             android:foregroundServiceType="connectedDevice" />
+
+        <!-- Ziel des System-BLE-Scans (PendingIntent): Geraet eingeschaltet -->
+        <receiver
+            android:name=".DeviceFoundReceiver"
+            android:exported="false" />
 
         <receiver
             android:name=".BootReceiver"
