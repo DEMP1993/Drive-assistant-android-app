@@ -121,7 +121,7 @@ This project is **source-available** under the
 [PolyForm Noncommercial License 1.0.0](LICENSE.md): you may use, modify and
 share it freely for **personal and other noncommercial purposes**.
 **Commercial use requires a separate license** — contact
-<poehlermarius@gmail.com>.
+<info@getdriveassistant.com>.
 
 This project is not affiliated with or endorsed by Google. "Google Maps" is
 a trademark of Google LLC.

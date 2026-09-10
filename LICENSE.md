@@ -1,4 +1,4 @@
-﻿Required Notice: Copyright (c) 2026 Marius Pöhler (poehlermarius@gmail.com)
+﻿Required Notice: Copyright (c) 2026 Marius Pöhler (info@getdriveassistant.com)
 
 # PolyForm Noncommercial License 1.0.0
 
