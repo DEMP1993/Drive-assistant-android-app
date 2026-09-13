@@ -41,8 +41,8 @@
     <string name="setup_notif_body">Google Maps shows the turn directions in a notification. The app reads exactly that one – and the song title for the music screen. Everything else is discarded immediately.\n\nTap the button below and switch on Drive Assistant. Android shows a general warning – that is normal.</string>
 
     <string name="setup_notif_restricted_body">Google Maps shows the turn directions in a notification. The app reads exactly that one – and the song title. Everything else is discarded immediately.\n\nBecause the app does not come from the Play Store, Android blocks this setting at first. It takes three parts – the buttons below guide you:\n1. Try access once – Android says "Restricted setting", close it with OK\n2. Allow restricted settings\n3. Switch on access</string>
-    <string name="setup_notif_try">1. Try access</string>
-    <string name="setup_notif_try_again">3. Switch on notification access</string>
+    <string name="setup_notif_try">Try access</string>
+    <string name="setup_notif_try_again">Switch on notification access</string>
     <string name="setup_unlock_xiaomi">2. Tap "Open unlock" above, scroll all the way down and switch on "Allow restricted settings". Then come back to the app.</string>
     <string name="setup_unlock_other">2. Tap "Open unlock" above, then ⋮ at the top right → "Allow restricted settings". Then come back to the app.</string>
     <string name="setup_unlock_done">✓ Restricted settings allowed – now just switch on access.</string>

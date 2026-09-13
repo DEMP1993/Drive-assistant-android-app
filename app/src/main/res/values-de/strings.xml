@@ -41,8 +41,8 @@
     <string name="setup_notif_body">Google Maps zeigt die Abbiegehinweise in einer Benachrichtigung. Die App liest genau diese – und den Musik-Titel für den Musik-Bildschirm. Alles andere wird sofort verworfen.\n\nTippe unten auf den Knopf und schalte Drive Assistant ein. Android zeigt dabei eine allgemeine Warnung, das ist normal.</string>
 
     <string name="setup_notif_restricted_body">Google Maps zeigt die Abbiegehinweise in einer Benachrichtigung. Die App liest genau diese – und den Musik-Titel. Alles andere wird sofort verworfen.\n\nWeil die App nicht aus dem Play Store kommt, sperrt Android diese Einstellung zuerst. So geht es in drei Teilen – die Knöpfe unten führen dich:\n1. Zugriff einmal versuchen – Android meldet „Eingeschränkte Einstellung“, mit OK schließen\n2. Freigabe erteilen\n3. Zugriff einschalten</string>
-    <string name="setup_notif_try">1. Zugriff versuchen</string>
-    <string name="setup_notif_try_again">3. Benachrichtigungszugriff einschalten</string>
+    <string name="setup_notif_try">Zugriff versuchen</string>
+    <string name="setup_notif_try_again">Benachrichtigungszugriff einschalten</string>
     <string name="setup_unlock_xiaomi">2. Tippe oben auf „Freigabe öffnen“, scrolle ganz nach unten und schalte „Eingeschränkte Einstellungen zulassen“ ein. Danach zurück in die App.</string>
     <string name="setup_unlock_other">2. Tippe oben auf „Freigabe öffnen“, dann oben rechts auf ⋮ → „Eingeschränkte Einstellungen zulassen“. Danach zurück in die App.</string>
     <string name="setup_unlock_done">✓ Freigabe erteilt – jetzt nur noch den Zugriff einschalten.</string>
