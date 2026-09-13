@@ -79,9 +79,8 @@ class MainActivity : AppCompatActivity() {
         if (hasAllPermissions()) armAutoConnect()
         else permissionLauncher.launch(requestablePermissions())
 
-        binding.btnNotifAccess.setOnClickListener {
-            startActivity(Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS))
-        }
+        binding.btnNotifAccess.setOnClickListener { RestrictedSettings.openNotificationAccess(this) }
+        binding.btnRestricted.setOnClickListener { RestrictedSettings.openAppInfo(this) }
         binding.btnAutostart.setOnClickListener { XiaomiAutostart.openSettings(this) }
 
         binding.btnConnect.setOnClickListener {
@@ -219,6 +218,12 @@ class MainActivity : AppCompatActivity() {
         )
         setDot(binding.dotStep1, granted && bound)
         binding.btnNotifAccess.isEnabled = true
+        // Browser-Installation: Android sperrt den Zugriff -> Anleitung zur Freigabe,
+        // sobald der Nutzer es einmal versucht hat (erst dann bietet Android sie an)
+        val restricted = !granted && RestrictedSettings.tried(this) &&
+            RestrictedSettings.isRestricted(this)
+        binding.tvRestricted.isVisible = restricted
+        binding.btnRestricted.isVisible = restricted
     }
 
     private fun setDot(dot: android.widget.TextView, ok: Boolean) {
