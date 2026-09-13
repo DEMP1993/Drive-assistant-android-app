@@ -14,6 +14,7 @@
     <string name="autostart_denied">Autostart is not allowed – without it your phone stops the app in the background and the display stays empty. If the switch for Drive Assistant already shows on: switch it off and on again.</string>
     <string name="btn_autostart">Allow autostart</string>
     <string name="restricted_hint">Access denied? Android blocks this setting for apps that don\'t come from the Play Store. To unlock it:\n1. Tap "Open unlock" below\n2. Tap ⋮ at the top right → "Allow restricted settings" and confirm\n3. Come back and tap "Open notification access" again</string>
+    <string name="restricted_hint_xiaomi">Access denied? Android blocks this setting for apps that don\'t come from the Play Store. To unlock it:\n1. Tap "Open unlock" below\n2. Scroll all the way down and switch on "Allow restricted settings"\n3. Come back and tap "Open notification access" again</string>
     <string name="btn_restricted">Open unlock</string>
     <string name="notif_missing">Notification access missing</string>
 

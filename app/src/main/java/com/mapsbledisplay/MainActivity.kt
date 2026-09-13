@@ -223,6 +223,10 @@ class MainActivity : AppCompatActivity() {
         val restricted = !granted && RestrictedSettings.tried(this) &&
             RestrictedSettings.isRestricted(this)
         binding.tvRestricted.isVisible = restricted
+        // Xiaomi/HyperOS: Schalter ganz unten in der App-Info, sonst Menue oben rechts
+        if (restricted) binding.tvRestricted.setText(
+            if (XiaomiAutostart.isXiaomi()) R.string.restricted_hint_xiaomi else R.string.restricted_hint
+        )
         binding.btnRestricted.isVisible = restricted
     }
 

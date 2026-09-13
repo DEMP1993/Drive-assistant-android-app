@@ -14,6 +14,7 @@
     <string name="autostart_denied">Autostart ist nicht erlaubt – ohne ihn beendet dein Handy die App im Hintergrund und die Anzeige bleibt leer. Steht der Schalter für Drive Assistant schon auf an: einmal aus- und wieder einschalten.</string>
     <string name="btn_autostart">Autostart erlauben</string>
     <string name="restricted_hint">Zugriff verweigert? Android sperrt diese Einstellung bei Apps, die nicht aus dem Play Store kommen. So gibst du sie frei:\n1. Unten „Freigabe öffnen“ tippen\n2. Oben rechts auf ⋮ tippen → „Eingeschränkte Einstellungen zulassen“ und bestätigen\n3. Zurück in die App und nochmal „Benachrichtigungszugriff öffnen“</string>
+    <string name="restricted_hint_xiaomi">Zugriff verweigert? Android sperrt diese Einstellung bei Apps, die nicht aus dem Play Store kommen. So gibst du sie frei:\n1. Unten „Freigabe öffnen“ tippen\n2. Ganz nach unten scrollen und den Schalter „Eingeschränkte Einstellungen zulassen“ einschalten\n3. Zurück in die App und nochmal „Benachrichtigungszugriff öffnen“</string>
     <string name="btn_restricted">Freigabe öffnen</string>
     <string name="notif_missing">Benachrichtigungszugriff fehlt</string>
 
