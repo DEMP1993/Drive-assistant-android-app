@@ -48,6 +48,21 @@ object RestrictedSettings {
         }
     }
 
+    /**
+     * War diese Installation von der Sperre betroffen (Browser/Dateimanager)?
+     * Bleibt true, auch nachdem die Freigabe erteilt wurde - fuer "Freigabe erteilt ✓".
+     */
+    fun wasBlocked(context: Context): Boolean {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return false
+        return try {
+            val source = context.packageManager.getInstallSourceInfo(context.packageName).packageSource
+            source == PackageInstaller.PACKAGE_SOURCE_DOWNLOADED_FILE ||
+                source == PackageInstaller.PACKAGE_SOURCE_LOCAL_FILE
+        } catch (e: Exception) {
+            false
+        }
+    }
+
     /** Hat der Nutzer schon einmal versucht, den Zugriff zu erteilen? */
     fun tried(context: Context): Boolean =
         context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getBoolean(KEY_TRIED, false)

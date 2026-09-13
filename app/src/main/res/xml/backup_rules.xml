@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 11 und aelter: Einrichtungs-Status nicht sichern. Nach einer
+     Neuinstallation soll die Ersteinrichtung frisch starten (sonst ueberspringt
+     sie z. B. den ersten Versuch beim gesperrten Benachrichtigungszugriff). -->
+<full-backup-content>
+    <exclude domain="sharedpref" path="setup.xml" />
+</full-backup-content>

@@ -128,6 +128,7 @@ class SetupActivity : AppCompatActivity() {
         b.tvProgress.text = getString(R.string.setup_progress, index + 1, steps.size)
         b.btnBack.isVisible = index > 0
         b.tvExtra.isVisible = false
+        b.tvExtra.setTextColor(COLOR_OPEN)
         b.btnExtra.isVisible = false
         b.btnAction.isVisible = true
 
@@ -146,17 +147,44 @@ class SetupActivity : AppCompatActivity() {
             Step.NOTIF -> {
                 val granted = NotificationManagerCompat.getEnabledListenerPackages(this)
                     .contains(packageName)
-                show(R.string.setup_notif_title, R.string.setup_notif_body, granted)
-                action(R.string.btn_notif_access) { RestrictedSettings.openNotificationAccess(this) }
-                if (!granted && RestrictedSettings.tried(this) && RestrictedSettings.isRestricted(this)) {
-                    b.tvExtra.setText(
-                        if (XiaomiAutostart.isXiaomi()) R.string.restricted_hint_xiaomi
-                        else R.string.restricted_hint
-                    )
-                    b.tvExtra.isVisible = true
-                    b.btnExtra.setText(R.string.btn_restricted)
-                    b.btnExtra.setOnClickListener { RestrictedSettings.openAppInfo(this) }
-                    b.btnExtra.isVisible = true
+                val restricted = RestrictedSettings.isRestricted(this)
+                val wasBlocked = RestrictedSettings.wasBlocked(this)
+                show(
+                    R.string.setup_notif_title,
+                    // Browser-Installation: Sperre schon VOR dem ersten Versuch erklaeren
+                    if (!granted && (restricted || wasBlocked)) R.string.setup_notif_restricted_body
+                    else R.string.setup_notif_body,
+                    granted
+                )
+                when {
+                    granted -> action(R.string.btn_notif_access) {
+                        RestrictedSettings.openNotificationAccess(this)
+                    }
+                    // Teil 1: einmal gegen die Sperre laufen - erst danach bietet
+                    // Android den Freigabe-Schalter an
+                    restricted && !RestrictedSettings.tried(this) ->
+                        action(R.string.setup_notif_try) { RestrictedSettings.openNotificationAccess(this) }
+                    // Teil 2: Freigabe erteilen
+                    restricted -> {
+                        action(R.string.btn_restricted) { RestrictedSettings.openAppInfo(this) }
+                        b.tvExtra.setText(
+                            if (XiaomiAutostart.isXiaomi()) R.string.setup_unlock_xiaomi
+                            else R.string.setup_unlock_other
+                        )
+                        b.tvExtra.isVisible = true
+                        b.btnExtra.setText(R.string.setup_notif_try_again)
+                        b.btnExtra.setOnClickListener { RestrictedSettings.openNotificationAccess(this) }
+                        b.btnExtra.isVisible = true
+                    }
+                    // Teil 3 (Freigabe erkannt) bzw. normaler Weg: Zugriff einschalten
+                    else -> {
+                        action(R.string.btn_notif_access) { RestrictedSettings.openNotificationAccess(this) }
+                        if (wasBlocked) {
+                            b.tvExtra.setText(R.string.setup_unlock_done)
+                            b.tvExtra.setTextColor(0xFF30D158.toInt())
+                            b.tvExtra.isVisible = true
+                        }
+                    }
                 }
             }
             Step.AUTOSTART -> {
@@ -170,7 +198,10 @@ class SetupActivity : AppCompatActivity() {
             Step.BATTERY -> {
                 val pm = getSystemService(PowerManager::class.java)
                 show(
-                    R.string.setup_battery_title, R.string.setup_battery_body,
+                    R.string.setup_battery_title,
+                    // HyperOS oeffnet statt des Android-Dialogs eine eigene Akku-Seite
+                    if (XiaomiAutostart.isXiaomi()) R.string.setup_battery_body_xiaomi
+                    else R.string.setup_battery_body,
                     pm.isIgnoringBatteryOptimizations(packageName)
                 )
                 action(R.string.setup_battery_action) { requestBatteryExemption() }

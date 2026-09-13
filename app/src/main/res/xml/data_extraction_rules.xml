@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 12+: Einrichtungs-Status weder in der Cloud sichern noch auf ein
+     neues Geraet uebertragen (siehe backup_rules.xml). -->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="sharedpref" path="setup.xml" />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="sharedpref" path="setup.xml" />
+    </device-transfer>
+</data-extraction-rules>
