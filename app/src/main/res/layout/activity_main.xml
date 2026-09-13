@@ -27,12 +27,14 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/btnHelp"
+                android:id="@+id/btnMenu"
                 style="?attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="0dp"
-                android:text="@string/btn_help" />
+                android:minWidth="48dp"
+                android:contentDescription="@string/menu_more"
+                android:text="⋮"
+                android:textSize="24sp" />
         </LinearLayout>
 
         <!-- Schritt 1: Benachrichtigungszugriff -->

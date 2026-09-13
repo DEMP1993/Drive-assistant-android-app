@@ -16,6 +16,44 @@
     <string name="restricted_hint">Zugriff verweigert? Android sperrt diese Einstellung bei Apps, die nicht aus dem Play Store kommen. So gibst du sie frei:\n1. Unten „Freigabe öffnen“ tippen\n2. Oben rechts auf ⋮ tippen → „Eingeschränkte Einstellungen zulassen“ und bestätigen\n3. Zurück in die App und nochmal „Benachrichtigungszugriff öffnen“</string>
     <string name="restricted_hint_xiaomi">Zugriff verweigert? Android sperrt diese Einstellung bei Apps, die nicht aus dem Play Store kommen. So gibst du sie frei:\n1. Unten „Freigabe öffnen“ tippen\n2. Ganz nach unten scrollen und den Schalter „Eingeschränkte Einstellungen zulassen“ einschalten\n3. Zurück in die App und nochmal „Benachrichtigungszugriff öffnen“</string>
     <string name="btn_restricted">Freigabe öffnen</string>
+
+    <string name="menu_more">Weitere Optionen</string>
+    <string name="menu_setup">Ersteinrichtung starten</string>
+    <string name="menu_help">Hilfe</string>
+
+    <string name="setup_progress">Schritt %1$d von %2$d</string>
+    <string name="setup_next">Weiter</string>
+    <string name="setup_skip">Überspringen</string>
+    <string name="setup_back">Zurück</string>
+    <string name="setup_start">Los geht\'s</string>
+    <string name="setup_finish">Fertig</string>
+    <string name="setup_status_done">✓ Erledigt</string>
+    <string name="setup_status_open">● Noch offen</string>
+
+    <string name="setup_welcome_title">Willkommen bei Drive Assistant</string>
+    <string name="setup_welcome_body">Dein Drive Assistant zeigt die Abbiegehinweise von Google Maps – dein Handy bleibt in der Tasche.\n\nIn wenigen Schritten richten wir alles ein. Das dauert etwa zwei Minuten und ist nur einmal nötig.\n\nDie App hat keine Internet-Berechtigung: Deine Daten gehen ausschließlich per Bluetooth an dein Display.</string>
+
+    <string name="setup_bt_title">Bluetooth erlauben</string>
+    <string name="setup_bt_body">Damit sich die App mit deinem Drive Assistant verbinden kann, braucht sie die Bluetooth-Berechtigung („Geräte in der Nähe“).\n\nDie Benachrichtigungs-Berechtigung ist optional – sie zeigt nur an, wenn das Display verbunden ist.</string>
+    <string name="setup_bt_action">Bluetooth erlauben</string>
+
+    <string name="setup_notif_title">Benachrichtigungszugriff</string>
+    <string name="setup_notif_body">Google Maps zeigt die Abbiegehinweise in einer Benachrichtigung. Die App liest genau diese – und den Musik-Titel für den Musik-Bildschirm. Alles andere wird sofort verworfen.\n\nTippe unten auf den Knopf und schalte Drive Assistant ein. Android zeigt dabei eine allgemeine Warnung, das ist normal.</string>
+
+    <string name="setup_autostart_title">Autostart erlauben</string>
+    <string name="setup_autostart_body">Dein Handy beendet Apps im Hintergrund sehr gründlich. Mit Autostart darf Drive Assistant von selbst starten, sobald du dein Display einschaltest.\n\nTippe unten auf den Knopf und schalte Drive Assistant in der Liste ein. Steht der Schalter schon auf an: einmal aus- und wieder einschalten.</string>
+
+    <string name="setup_pair_title">Drive Assistant koppeln</string>
+    <string name="setup_pair_body">Schalte jetzt deinen Drive Assistant ein – er zeigt den Warte-Bildschirm.\n\nTippe dann auf „Jetzt koppeln“ und bestätige den Dialog. Ab dann startet dein Handy die App von selbst, sobald du das Display einschaltest.</string>
+    <string name="setup_pair_action">Jetzt koppeln</string>
+    <string name="setup_connect_body">Schalte jetzt deinen Drive Assistant ein – er zeigt den Warte-Bildschirm – und tippe auf den Knopf. Danach verbindet sich die App automatisch.</string>
+
+    <string name="setup_battery_title">Akku nicht einschränken</string>
+    <string name="setup_battery_body">Damit die App auch bei ausgeschaltetem Bildschirm verbunden bleibt, sollte Android sie beim Akkusparen nicht einschränken.\n\nDie App verbraucht dadurch nicht mehr Akku: Sie ist nur aktiv, solange dein Display verbunden ist.</string>
+    <string name="setup_battery_action">Einschränkung aufheben</string>
+
+    <string name="setup_done_title">Fertig!</string>
+    <string name="setup_done_body">So benutzt du den Drive Assistant ab jetzt:\n\n1. Display einschalten\n2. Navigation in Google Maps starten\n3. Losfahren\n\nDie App musst du dafür nicht öffnen. Diese Einrichtung findest du jederzeit wieder im Menü ⋮ oben rechts.</string>
     <string name="notif_missing">Benachrichtigungszugriff fehlt</string>
 
     <string name="status_dot">●</string>

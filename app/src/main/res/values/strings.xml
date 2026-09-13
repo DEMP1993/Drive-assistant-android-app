@@ -16,6 +16,44 @@
     <string name="restricted_hint">Access denied? Android blocks this setting for apps that don\'t come from the Play Store. To unlock it:\n1. Tap "Open unlock" below\n2. Tap ⋮ at the top right → "Allow restricted settings" and confirm\n3. Come back and tap "Open notification access" again</string>
     <string name="restricted_hint_xiaomi">Access denied? Android blocks this setting for apps that don\'t come from the Play Store. To unlock it:\n1. Tap "Open unlock" below\n2. Scroll all the way down and switch on "Allow restricted settings"\n3. Come back and tap "Open notification access" again</string>
     <string name="btn_restricted">Open unlock</string>
+
+    <string name="menu_more">More options</string>
+    <string name="menu_setup">Start setup</string>
+    <string name="menu_help">Help</string>
+
+    <string name="setup_progress">Step %1$d of %2$d</string>
+    <string name="setup_next">Next</string>
+    <string name="setup_skip">Skip</string>
+    <string name="setup_back">Back</string>
+    <string name="setup_start">Let\'s go</string>
+    <string name="setup_finish">Done</string>
+    <string name="setup_status_done">✓ Done</string>
+    <string name="setup_status_open">● Not done yet</string>
+
+    <string name="setup_welcome_title">Welcome to Drive Assistant</string>
+    <string name="setup_welcome_body">Your Drive Assistant shows the turn-by-turn directions from Google Maps – your phone stays in your pocket.\n\nA few steps set everything up. It takes about two minutes and is only needed once.\n\nThe app has no internet permission: your data goes exclusively over Bluetooth to your display.</string>
+
+    <string name="setup_bt_title">Allow Bluetooth</string>
+    <string name="setup_bt_body">To connect to your Drive Assistant, the app needs the Bluetooth permission ("Nearby devices").\n\nThe notification permission is optional – it only shows when the display is connected.</string>
+    <string name="setup_bt_action">Allow Bluetooth</string>
+
+    <string name="setup_notif_title">Notification access</string>
+    <string name="setup_notif_body">Google Maps shows the turn directions in a notification. The app reads exactly that one – and the song title for the music screen. Everything else is discarded immediately.\n\nTap the button below and switch on Drive Assistant. Android shows a general warning – that is normal.</string>
+
+    <string name="setup_autostart_title">Allow autostart</string>
+    <string name="setup_autostart_body">Your phone closes background apps very thoroughly. With autostart, Drive Assistant may start by itself as soon as you switch on your display.\n\nTap the button below and switch on Drive Assistant in the list. If the switch already shows on: switch it off and on again.</string>
+
+    <string name="setup_pair_title">Pair Drive Assistant</string>
+    <string name="setup_pair_body">Switch on your Drive Assistant now – it shows the wait screen.\n\nThen tap "Pair now" and confirm the dialog. From then on your phone starts the app by itself as soon as you switch on the display.</string>
+    <string name="setup_pair_action">Pair now</string>
+    <string name="setup_connect_body">Switch on your Drive Assistant now – it shows the wait screen – and tap the button. After that the app connects automatically.</string>
+
+    <string name="setup_battery_title">Don\'t restrict battery</string>
+    <string name="setup_battery_body">So the app stays connected while the screen is off, Android should not restrict it to save battery.\n\nThis does not use more battery: the app is only active while your display is connected.</string>
+    <string name="setup_battery_action">Remove restriction</string>
+
+    <string name="setup_done_title">All set!</string>
+    <string name="setup_done_body">From now on, using your Drive Assistant is simple:\n\n1. Switch on the display\n2. Start navigation in Google Maps\n3. Ride\n\nYou don\'t need to open the app for this. You can run this setup again any time from the ⋮ menu at the top right.</string>
     <string name="notif_missing">Notification access missing</string>
 
     <string name="status_dot">●</string>

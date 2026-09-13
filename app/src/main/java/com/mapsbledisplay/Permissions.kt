@@ -17,6 +17,11 @@ object Permissions {
             arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
         }
 
+    /** BLE-Pflichtberechtigungen + Benachrichtigungen (Android 13+, optional). */
+    fun requestable(): Array<String> =
+        requiredBle() + if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+            arrayOf(Manifest.permission.POST_NOTIFICATIONS) else emptyArray()
+
     fun hasBle(context: Context): Boolean =
         requiredBle().all {
             ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED

@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityMainBinding
+    /** Auto-Verbinden in dieser Activity schon scharf geschaltet? */
+    private var autoArmed = false
 
     private val permissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -74,10 +76,16 @@ class MainActivity : AppCompatActivity() {
             else if (!hasAllPermissions()) permissionLauncher.launch(requestablePermissions())
             else startPairing()
         }
-        // Beim Erststart zuerst die Berechtigungen anfragen; Auto-Verbinden
-        // wird dann im Launcher-Callback scharf geschaltet.
-        if (hasAllPermissions()) armAutoConnect()
-        else permissionLauncher.launch(requestablePermissions())
+        // Erststart: die Ersteinrichtung fuehrt durch Berechtigungen und Kopplung
+        // (keine eigenen Dialoge hier, sonst ueberlagern sie sich). Danach:
+        // Berechtigungen anfragen bzw. Auto-Verbinden scharf schalten.
+        if (!SetupActivity.isDone(this)) {
+            pairOffered = true
+            SetupActivity.start(this)
+        } else if (hasAllPermissions()) {
+            autoArmed = true
+            armAutoConnect()
+        } else permissionLauncher.launch(requestablePermissions())
 
         binding.btnNotifAccess.setOnClickListener { RestrictedSettings.openNotificationAccess(this) }
         binding.btnRestricted.setOnClickListener { RestrictedSettings.openAppInfo(this) }
@@ -104,13 +112,30 @@ class MainActivity : AppCompatActivity() {
             toast(getString(R.string.test_sent))
         }
 
-        binding.btnHelp.setOnClickListener { showHelpDialog() }
+        binding.btnMenu.setOnClickListener { view ->
+            androidx.appcompat.widget.PopupMenu(this, view).apply {
+                menu.add(0, 1, 0, R.string.menu_setup)
+                menu.add(0, 2, 1, R.string.menu_help)
+                setOnMenuItemClickListener { item ->
+                    when (item.itemId) {
+                        1 -> SetupActivity.start(this@MainActivity)
+                        2 -> showHelpDialog()
+                    }
+                    true
+                }
+            }.show()
+        }
 
         observeState()
     }
 
     override fun onResume() {
         super.onResume()
+        // Zurueck aus der Ersteinrichtung: jetzt Auto-Verbinden scharf schalten
+        if (!autoArmed && SetupActivity.isDone(this) && hasAllPermissions()) {
+            autoArmed = true
+            armAutoConnect()
+        }
         refreshNotifAccess()
         refreshPairUi()
         refreshAutostart()
