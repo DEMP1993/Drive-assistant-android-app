@@ -6,7 +6,10 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.app.Activity
+import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
@@ -21,6 +24,9 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val DOT_GREEN = 0xFF2E7D32.toInt()
         private const val DOT_RED = 0xFFC62828.toInt()
+
+        /** Kopplungsdialog pro App-Start nur einmal von selbst anbieten. */
+        private var pairOffered = false
     }
 
     private lateinit var binding: ActivityMainBinding
@@ -44,12 +50,30 @@ class MainActivity : AppCompatActivity() {
         ActivityResultContracts.RequestPermission()
     ) { BackgroundScan.start(this) }
 
+    // System-Kopplungsdialog (Companion Device Manager)
+    private val pairLauncher = registerForActivityResult(
+        ActivityResultContracts.StartIntentSenderForResult()
+    ) { result ->
+        CompanionPairing.finish(this)
+        refreshPairUi()
+        if (result.resultCode == Activity.RESULT_OK && CompanionPairing.isPaired(this)) {
+            toast(getString(R.string.pair_done))
+        }
+        armAutoConnect()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         BleManager.init(applicationContext)
+        CompanionPairing.ensureObserving(this)
+        binding.btnPair.setOnClickListener {
+            if (!BleManager.isBluetoothOn()) toast(getString(R.string.bt_off))
+            else if (!hasAllPermissions()) permissionLauncher.launch(requestablePermissions())
+            else startPairing()
+        }
         // Beim Erststart zuerst die Berechtigungen anfragen; Auto-Verbinden
         // wird dann im Launcher-Callback scharf geschaltet.
         if (hasAllPermissions()) armAutoConnect()
@@ -58,6 +82,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnNotifAccess.setOnClickListener {
             startActivity(Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS))
         }
+        binding.btnAutostart.setOnClickListener { XiaomiAutostart.openSettings(this) }
 
         binding.btnConnect.setOnClickListener {
             if (BleManager.state.value == BleManager.State.CONNECTED ||
@@ -88,14 +113,18 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         refreshNotifAccess()
-        // Selbstheilung: MIUI wirft den NotificationListener gern raus, ohne
-        // ihn neu zu binden. Bei jedem App-Oeffnen einmal Rebind anfordern -
-        // ist der Listener schon gebunden, ist das ein No-Op.
-        if (isNotificationAccessGranted()) {
-            android.service.notification.NotificationListenerService.requestRebind(
-                android.content.ComponentName(this, MapsNotificationListenerService::class.java)
-            )
-        }
+        refreshPairUi()
+        refreshAutostart()
+        // Selbstheilung: Listener nach einem Prozess-Kill neu binden, ohne dass
+        // der Nutzer den Zugriff aus- und einschalten muss (siehe ListenerRebind).
+        ListenerRebind.healSoon(this)
+    }
+
+    /** Xiaomi: Hinweis + Knopf, solange Autostart verweigert ist. */
+    private fun refreshAutostart() {
+        val denied = XiaomiAutostart.isAllowed(this) == false
+        binding.tvAutostart.isVisible = denied
+        binding.btnAutostart.isVisible = denied
     }
 
     // ------------------------------------------------------------ Auto-Connect
@@ -106,9 +135,44 @@ class MainActivity : AppCompatActivity() {
      */
     private fun armAutoConnect() {
         BackgroundScan.start(this)
+        // Noch nicht gekoppelt: einmal die Kopplung anbieten, BEVOR verbunden
+        // wird - verbunden advertised das Geraet nicht und der Dialog faende es nicht.
+        if (needsPairing() && !pairOffered && BleManager.isBluetoothOn()) {
+            pairOffered = true
+            startPairing()
+            return
+        }
+        if (CompanionPairing.inProgress) return
         if (BleManager.isBluetoothOn() &&
             BleManager.state.value == BleManager.State.DISCONNECTED
         ) BleManager.startScanAndConnect()
+    }
+
+    // ---------------------------------------------------------------- Koppeln
+    private fun needsPairing() =
+        CompanionPairing.isSupported(this) && !CompanionPairing.isPaired(this)
+
+    private fun startPairing() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) return
+        pairOffered = true
+        CompanionPairing.start(
+            this,
+            onDialog = { sender ->
+                pairLauncher.launch(IntentSenderRequest.Builder(sender).build())
+            },
+            onFailed = {
+                CompanionPairing.finish(this)
+                toast(getString(R.string.pair_failed))
+                refreshPairUi()
+                armAutoConnect()
+            }
+        )
+    }
+
+    private fun refreshPairUi() {
+        val show = needsPairing()
+        binding.btnPair.isVisible = show
+        binding.tvPairHint.isVisible = show
     }
 
     // ----------------------------------------------------------- Berechtigungen

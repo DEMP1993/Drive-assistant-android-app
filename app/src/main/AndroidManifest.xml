@@ -31,6 +31,14 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
+    <!-- Companion Device Manager (Android 12+): das System erkennt den
+         gekoppelten Drive Assistant und startet die App, sobald er auftaucht -->
+    <uses-feature android:name="android.software.companion_device_setup"
+        android:required="false" />
+    <uses-permission android:name="android.permission.REQUEST_OBSERVE_COMPANION_DEVICE_PRESENCE" />
+    <uses-permission android:name="android.permission.REQUEST_COMPANION_RUN_IN_BACKGROUND" />
+    <uses-permission android:name="android.permission.REQUEST_COMPANION_START_FOREGROUND_SERVICES_FROM_BACKGROUND" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -65,6 +73,17 @@
             android:name=".DeviceService"
             android:exported="false"
             android:foregroundServiceType="connectedDevice" />
+
+        <!-- Vom System gebunden, wenn der gekoppelte Drive Assistant auftaucht -->
+        <service
+            android:name=".DevicePresenceService"
+            android:exported="true"
+            android:permission="android.permission.BIND_COMPANION_DEVICE_SERVICE"
+            tools:targetApi="s">
+            <intent-filter>
+                <action android:name="android.companion.CompanionDeviceService" />
+            </intent-filter>
+        </service>
 
         <!-- Ziel des System-BLE-Scans (PendingIntent): Geraet eingeschaltet -->
         <receiver

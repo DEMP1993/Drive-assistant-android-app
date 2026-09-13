@@ -10,7 +10,9 @@
     <string name="btn_notif_access">Open notification access</string>
     <string name="notif_privacy_hint">Note: Android will show a general warning about notification access. This app only processes Google Maps notifications and your music status – everything else is discarded immediately. The app has no internet permission and therefore cannot pass anything on.</string>
     <string name="notif_granted">Access granted, service running</string>
-    <string name="notif_granted_not_bound">Access granted, but the service is NOT running – please switch access off and on again (see Help)</string>
+    <string name="notif_granted_not_bound">Access granted, the service is being restarted… If this message stays, allow autostart or switch access off and on again (see Help)</string>
+    <string name="autostart_denied">Autostart is not allowed – without it your phone stops the app in the background and the display stays empty. If the switch for Drive Assistant already shows on: switch it off and on again.</string>
+    <string name="btn_autostart">Allow autostart</string>
     <string name="notif_missing">Notification access missing</string>
 
     <string name="status_dot">●</string>
@@ -19,7 +21,7 @@
     <string name="help_text"><![CDATA[
 <b>Getting started with Drive Assistant</b><br/>
 1. Allow notification access (button under step 1).<br/>
-2. Switch on the Drive Assistant – the app connects automatically (also while it is closed). If that does not happen, tap "Search &amp; connect Drive Assistant".<br/>
+2. Switch on the Drive Assistant and pair it once when the app asks ("Pair Drive Assistant"). From then on the app connects automatically, even while it is closed. If that does not happen, tap "Search &amp; connect Drive Assistant".<br/>
 3. Start navigation in Google Maps – the Drive Assistant automatically shows the turn arrow, distance and street.<br/>
 <br/>
 <b>One-time settings (important – otherwise the display stays empty!)</b><br/>
@@ -36,7 +38,9 @@
 <br/>
 • The notification <i>"Drive Assistant active"</i> only appears while the device is connected. It keeps the app alive during the ride so the system does not stop it. Please do not disable it.<br/>
 <br/>
-• If step 1 says <i>"service is NOT running"</i> (or the display stays empty despite everything): switch notification access OFF and ON again (button under step 1). This restarts the service. Also recommended after every app update.<br/>
+• The app restarts its notification service by itself if the system stopped it. If step 1 keeps saying <i>"service is being restarted"</i> (or the display stays empty despite everything): allow autostart, then switch notification access OFF and ON again (button under step 1).<br/>
+<br/>
+• Xiaomi, Redmi and POCO phones reset the autostart permission after every app update. The app notices this and shows an "Allow autostart" button that takes you straight to the switch.<br/>
 <br/>
 • If the connection drops (e.&#160;g. the device was switched off and on again), the app reconnects by itself. If it does not, tap "Search &amp; connect" – the manual way always works. Without a connection the Drive Assistant shows the wait screen.<br/>
 <br/>
@@ -48,6 +52,11 @@
 <br/>
 • "Send test packet" only checks the radio link to the Drive Assistant – Google Maps is not needed for it.
 ]]></string>
+
+    <string name="btn_pair">Pair Drive Assistant (one-time)</string>
+    <string name="pair_hint">Pair once so your phone starts the app by itself as soon as you switch on the Drive Assistant. The Drive Assistant must be switched on for this.</string>
+    <string name="pair_done">Paired – connects automatically from now on</string>
+    <string name="pair_failed">Pairing did not work – is the Drive Assistant switched on?</string>
 
     <string name="btn_connect">Search &amp; connect Drive Assistant</string>
     <string name="btn_disconnect">Disconnect</string>

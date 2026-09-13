@@ -125,6 +125,9 @@ object BleManager {
 
     private val scanCallback = object : ScanCallback() {
         override fun onScanResult(callbackType: Int, result: ScanResult) {
+            // Der Stack liefert oft mehrere Treffer kurz hintereinander, bevor
+            // stopScan greift - nur den ersten nehmen, sonst zwei GATT-Verbindungen
+            if (!scanning) return
             val name = result.device.name ?: result.scanRecord?.deviceName
             Log.i(TAG, "Gefunden: $name / ${result.device.address}")
             // Service-UUID hat schon gefiltert; Name als zusaetzliche Sicherheit
@@ -157,6 +160,10 @@ object BleManager {
     }
 
     private fun connect(device: BluetoothDevice) {
+        if (gatt != null || _state.value == State.CONNECTING || _state.value == State.CONNECTED) {
+            Log.i(TAG, "Verbindung laeuft bereits - zweiter Versuch ignoriert")
+            return
+        }
         _state.value = State.CONNECTING
         gatt = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             device.connectGatt(appContext, false, gattCallback, BluetoothDevice.TRANSPORT_LE)

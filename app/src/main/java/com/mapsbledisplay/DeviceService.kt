@@ -64,6 +64,11 @@ class DeviceService : Service() {
                 Log.w(TAG, "Bluetooth-Berechtigung fehlt - Start uebersprungen")
                 return
             }
+            // Kopplungsdialog offen: nicht verbinden, sonst stoppt das Advertising
+            if (CompanionPairing.inProgress) {
+                Log.i(TAG, "Kopplung laeuft - Start uebersprungen")
+                return
+            }
             val intent = Intent(context, DeviceService::class.java)
             if (address != null) intent.putExtra(EXTRA_ADDRESS, address)
             try {
@@ -88,11 +93,11 @@ class DeviceService : Service() {
 
     private val rebindWatchdog = object : Runnable {
         override fun run() {
-            requestRebind()
+            ListenerRebind.heal(this@DeviceService)
             handler.postDelayed(this, REBIND_INTERVAL_MS)
         }
     }
-    private val rebindRetry = Runnable { if (!listenerBound()) requestRebind() }
+    private val rebindRetry = Runnable { ListenerRebind.heal(this) }
     private val graceStop = Runnable {
         if (BleManager.state.value != BleManager.State.CONNECTED) {
             Log.i(TAG, "Keine Verbindung seit ${GRACE_MS / 1000}s -> Dienst beendet sich")

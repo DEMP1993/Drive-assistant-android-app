@@ -21,8 +21,10 @@ pocket with the screen off.
   music screen and executes the display's buttons (play/pause, next,
   previous) on your phone's active player.
 - **Connects automatically** when the display is switched on — even while
-  the app is closed — and reconnects by itself after a drop. A small
-  notification is shown only while the display is connected.
+  the app is closed — and reconnects by itself after a drop. On Android 12+
+  the display is paired once as a companion device, so Android itself
+  watches for it and starts the app. A small notification is shown only
+  while the display is connected.
 - Includes a **test packet** button so you can verify the connection before
   you drive.
 
@@ -74,16 +76,19 @@ The app guides you through three steps, each with a status indicator:
 
 1. **Allow notification access** — needed to read the Google Maps
    navigation notification (and to see your media playback).
-2. **Switch on the display** — the app connects automatically (from
-   0.2). If it doesn't, **Search & connect** does it manually. Use
-   **send test packet** to check everything works.
+2. **Switch on the display and pair it once** — on Android 12+ the app
+   shows the system dialog "Pair with Drive Assistant" (from 0.21). After
+   that it connects automatically. If it doesn't, **Search & connect** does
+   it manually. Use **send test packet** to check everything works.
 3. **Start navigating in Google Maps** — the display comes alive.
 
 Tips for reliable background operation:
 
 - Exclude the app from battery optimization / allow autostart. Some phone
   brands (e.g. Xiaomi/HyperOS) restrict background apps aggressively — the
-  in-app **help dialog (ⓘ)** covers the needed switches.
+  in-app **help dialog (ⓘ)** covers the needed switches. On Xiaomi, Redmi
+  and POCO phones the app detects a missing autostart permission and shows
+  a button that opens the right settings page.
 - The small "Drive Assistant active" notification (shown while the display
   is connected) is intentional — it keeps the system from stopping the app
   mid-drive. Lock the app in the recent-apps overview so "close all"

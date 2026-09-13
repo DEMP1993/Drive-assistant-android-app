@@ -180,6 +180,7 @@ class MapsNotificationListenerService : NotificationListenerService() {
         // schliessen"), bindet es den Listener kurz danach neu -> hier den
         // Hintergrund-Scan sicherheitshalber wieder registrieren.
         BackgroundScan.ensure(this)
+        CompanionPairing.ensureObserving(this)
         // Media-Sessions beobachten (braucht denselben Benachrichtigungs-
         // zugriff, der hier gerade nachweislich aktiv ist).
         MediaWatcher.start(this)

@@ -82,6 +82,25 @@
             android:layout_height="wrap_content"
             android:text="@string/btn_notif_access" />
 
+        <!-- Xiaomi: Autostart verweigert (nur dann sichtbar) -->
+        <TextView
+            android:id="@+id/tvAutostart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/autostart_denied"
+            android:textColor="#C62828"
+            android:paddingStart="26dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="4dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnAutostart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_autostart"
+            android:visibility="gone" />
+
         <!-- Schritt 2: BLE -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -113,6 +132,25 @@
             android:paddingStart="26dp"
             android:paddingTop="4dp"
             android:paddingBottom="4dp" />
+
+        <!-- Einmalige Kopplung (nur sichtbar, solange nicht gekoppelt) -->
+        <TextView
+            android:id="@+id/tvPairHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pair_hint"
+            android:textSize="13sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:paddingStart="26dp"
+            android:paddingBottom="4dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnPair"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_pair"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/btnConnect"
