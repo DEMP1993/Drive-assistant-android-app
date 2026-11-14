@@ -88,6 +88,13 @@ class MapsNotificationListenerService : NotificationListenerService() {
             Log.d(TAG, "bigText = $bigText")
         }
 
+        // Uebersicht/Neuberechnung ohne Anweisung: Navigation laeuft weiter,
+        // das Display behaelt die letzte Anweisung (kein Text-/Pfeil-Wechsel)
+        if (NavParser.isStatusOnly(title, text ?: bigText)) {
+            mainHandler.removeCallbacks(navEndRunnable)
+            return
+        }
+
         val nav = NavParser.parse(title, text ?: bigText, sub)
         if (nav.isEmpty()) return
 
