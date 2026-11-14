@@ -126,6 +126,21 @@ class MapsNotificationListenerService : NotificationListenerService() {
         drawable.setBounds(0, 0, ICON_SIZE, ICON_SIZE)
         drawable.draw(Canvas(bmp))
 
+        // Maps liefert das Pfeilbild je nach Version weiss (alt) oder schwarz
+        // eingefaerbt (ab 26.46, tint=0xff000000). Ist das Bild einfarbig dunkel,
+        // zaehlt nur die Form (Deckkraft); sonst wie bisher nur helle Pixel,
+        // damit dunkle Nebenteile mehrfarbiger Bilder wegfallen.
+        var opaque = 0
+        var bright = 0
+        for (y in 0 until ICON_SIZE) for (x in 0 until ICON_SIZE) {
+            val p = bmp.getPixel(x, y)
+            if (Color.alpha(p) > 96) {
+                opaque++
+                if ((Color.red(p) + Color.green(p) + Color.blue(p)) / 3 > 40) bright++
+            }
+        }
+        val shapeOnly = opaque > 0 && bright * 10 < opaque
+
         val bytes = ByteArray(3 + ICON_SIZE * ICON_SIZE / 8)
         bytes[0] = 'I'.code.toByte()
         bytes[1] = ICON_SIZE.toByte()
@@ -137,7 +152,7 @@ class MapsNotificationListenerService : NotificationListenerService() {
             for (x in 0 until ICON_SIZE) {
                 val p = bmp.getPixel(x, y)
                 val lum = (Color.red(p) + Color.green(p) + Color.blue(p)) / 3
-                val set = Color.alpha(p) > 96 && lum > 40
+                val set = Color.alpha(p) > 96 && (shapeOnly || lum > 40)
                 acc = (acc shl 1) or (if (set) 1 else 0)
                 if (++bits == 8) {
                     bytes[idx++] = acc.toByte()
